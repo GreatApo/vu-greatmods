@@ -1,0 +1,9 @@
+{
+	"Name": "KillNSpawn",
+	"Authors": ["GreatApo"],
+	"Description": "Kills and respawns the player on reload",
+	"URL": "",
+	"Version": "0.1",
+	"HasWebUI": false,
+	"HasVeniceEXT": true
+}
