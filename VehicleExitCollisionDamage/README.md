@@ -4,4 +4,4 @@ Take collision damage after exiting vehicle based on horizontal speed & animatio
 
 ## Result
 
-![Vehicle Exit Collision Damage Preview.gif](screenshots/VehicleExitCollisionDamage preview.gif)
+![Vehicle Exit Collision Damage Preview.gif](screenshots/VehicleExitCollisionDamagePreview.gif)
