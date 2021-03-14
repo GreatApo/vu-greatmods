@@ -1,7 +1,7 @@
 {
 	"Name": "ScopesReticulesModifier",
 	"Authors": ["Powback","GreatApo","RM Dev Team"],
-	"Description": "Scale x1 reticules and mode weapon scopes",
+	"Description": "Scale x1 reticules and move weapon scopes",
 	"URL": "https://github.com/GreatApo/vu-greatmods/ScopesReticulesModifier",
 	"Version": "0.1",
 	"HasWebUI": false,

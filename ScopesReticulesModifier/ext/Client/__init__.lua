@@ -4,7 +4,7 @@ Weapons:
 	dao-12, usas-12, jackhammer, spas12, pp2000, ump45, magpulpdr, p90, mp7, asval, pp-19, mp5k, taurus44, crossbow_prototype, 
 	m4a1, scar-h, a91, g36c, sg553lb, aks74u, hk53, qbz-95b, acr, mtar, m27iar, m249, pecheneg, m240, m60, type88, rpk, qbb-95, 
 	mg36, l86, lsat, mk11, sv98, sks, m40a5, model98b, m39ebr, svd, qbu-88, l96, hk417, jng90, p90
-
+	
 Attachments:
 	eotech, pka-s, kobra, pso-1, acog, m145, pka, pks-07, irnv, rx01, ballistic_scope, rifle_scope
 	siderail, sightrail
@@ -20,7 +20,6 @@ local m_reticles = {
 	{weapon = 'all', name = 'eotech', scale = 0.45, fixY = 0.0345}
 }
 -- Move scopes along the gun config (works for all scopes, units in meters)
-self.m_ScopeOffsets = {
 local m_scope = {
 	-- weapon: Weapon name, name: Name of the scope, z: a value to move the scope along the weapon (+ further away, - closer)
 	{ weapon = 'm240', name = 'acog', z = -0.03 }, -- M240 - ACOG
@@ -43,39 +42,55 @@ local m_scope = {
 }
 
 -- Accessories/Guns to skip:
-local m_skip = {'soundsupressor', 'flashsuppressor', 'general_sight', 'silencer', 'targetpointer', 'flashlight', 'anpeq2'}
-
+local m_skip = {
+	'sa18igla', 'rpg7',
+	'soundsupressor', 'flashsuppressor', 'general_sight', 'silencer', 'targetpointer', 'flashlight', 'anpeq2', 'siderail',
+	'gadgets'
+}
 
 Events:Subscribe('Partition:Loaded', function(partition)
 	if partition == nil then
 		return
 	end
 
-	local instances = partition.instances
-	-- Regognise weapon
+	if partition.primaryInstance.typeInfo.name ~= 'SoldierWeaponBlueprint' then
+		-- Not a weapon
+		return
+	end
+
+	-- Recognize weapon
 	local s_weapon = "n/a"
-	if ( partition.name:lower():match('weapons/[^/]+/') ) then
-		s_weapon =  partition.name:lower():match('weapons/([^/]+)/'):gsub('xp%d_', '')
+	if ( partition.name:lower():match('^weapons/[^/]+/') ) then
+		s_weapon =  partition.name:lower():match('^weapons/([^/]+)/'):gsub('xp%d_', '')
 	else
 		return
 	end
 
+	if skip(s_weapon) then
+		--print( "Skipping: " .. s_weapon)
+		return
+	end
+
+	--print( "Weapon Name: " .. s_weapon)
+
 	-- Loop through weapon instances
-	for _, l_instance in pairs(instances) do
+	for _, l_instance in pairs(partition.instances) do
 		if l_instance ~= nil then
 
 			-- Check if target elements
 			if l_instance:Is("WeaponRegularSocketObjectData") then
 				l_instance = WeaponRegularSocketObjectData(l_instance)
-				
-				if ( l_instance.asset1pzoom ~= nil and Asset(l_instance.asset1pzoom).name:lower() ~= nil ) then
-					if ( Asset(l_instance.asset1pzoom).name:lower():match('weapons/accessories/[^/]+/[^/]+') ) then
+
+				if l_instance.asset1pzoom ~= nil and Asset(l_instance.asset1pzoom).name:lower() ~= nil then
+					
+					if Asset(l_instance.asset1pzoom).name:lower():match('weapons/accessories/[^/]+/[^/]+') then
 						local s_name, s_item = Asset(l_instance.asset1pzoom).name:lower():match('weapons/accessories/([^/]+)/([^/]+)')
-						
+
 						-- Check if weapon accessory
-						if ( s_name ~= nil and s_item ~= nil ) then
+						if s_name ~= nil and s_item ~= nil then
 							
-							if ( skipAccessory(s_name) == false ) then
+							if skip(s_name) == false then
+								--print("Accessory Name: " .. s_name .. " - " .. s_item)
 								
 								-- Check if scope or reticle
 								if ( l_instance.asset1p ~= nil ) then
@@ -105,7 +120,9 @@ Events:Subscribe('Partition:Loaded', function(partition)
 										print( s_weapon .. " - " .. s_name .. " - x".. s_scale )
 									end
 								end
-								
+							
+							else
+								--print("Skipping accessory name: " .. s_name .. " - " .. s_item)
 							end
 							
 						end
@@ -113,40 +130,41 @@ Events:Subscribe('Partition:Loaded', function(partition)
 						
 				end
 			end
+			
 		end
 	end
 end)
 
 function getReticleData (p_weapon, p_accessory)
-    for _, l_value in pairs(m_reticles) do
+	for _, l_value in pairs(m_reticles) do
         if ( (l_value.weapon == p_weapon or l_value.weapon == 'all') and l_value.name == p_accessory ) then
 			if l_value.scale ~= 1 then
 				return l_value.scale, l_value.fixY
 			else
 				return nil, nil
 			end
-        end
-    end
+		end
+	end
 
 	return nil, nil
 end
 
 function getScopeData (p_weapon, p_accessory)
-    for _, l_value in pairs(m_scope) do
+	for _, l_value in pairs(m_scope) do
         if ( (l_value.weapon == p_weapon or l_value.weapon == 'all') and l_value.name == p_accessory ) then
 			return l_value.z
         end
-    end
+	end
 
 	return nil
 end
 
-function skipAccessory (p_val)
-    for _, l_value in pairs(m_skip) do
+function skip (p_val)
+	for _, l_value in pairs(m_skip) do
         if l_value == p_val then
             return true
         end
-    end
+	end
 
-    return false
+	return false
 end
