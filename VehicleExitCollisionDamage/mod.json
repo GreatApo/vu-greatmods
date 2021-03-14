@@ -1,0 +1,9 @@
+{
+	"Name": "VehicleExitCollisionDamage",
+	"Authors": ["GreatApo","RM Dev Team"],
+	"Description": "Take collision damage after exiting vehicle based on horizontal speed & animation",
+	"URL": "https://github.com/GreatApo/vu-greatmods/VehicleExitCollisionDamage",
+	"Version": "0.1",
+	"HasWebUI": false,
+	"HasVeniceEXT": true
+}
