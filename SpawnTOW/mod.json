@@ -1,0 +1,8 @@
+{
+	"Name": "SpawnTOW",
+	"Authors": ["GreatApo", "Janssent"],
+	"Description": "Spawns TOW2 or Kornet on every map (use !tow2 or !kornet)",
+	"Version": "0.1",
+	"HasWebUI": false,
+	"HasVeniceEXT": true
+}
