@@ -6,4 +6,4 @@ Spawns TOW2 or Kornet on every map (use !tow2 or !kornet)
 
 TOW2 & Kornet spawned on Zimba tower
 
-![TOW2 & Kornet on Zimba tower](screenshots/TOW2&Kornet_on_Zimba_Tower.PNG)
+![TOW2 & Kornet on Zimba tower](Screenshots/TOW2&Kornet_on_Zimba_Tower.PNG)
