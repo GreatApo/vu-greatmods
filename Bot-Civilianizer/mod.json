@@ -1,0 +1,13 @@
+{
+	"Name": "Bot-Civilianizer",
+	"Authors": ["GreatApo"],
+	"Creadits": ["Janssent"],
+	"Description": "Changes the visual appearance of the bots to look like civilians. This is useful for Zombie servers.",
+	"URL": "",
+	"Version": "0.1",
+	"HasWebUI": false,
+	"HasVeniceEXT": true,
+    "Dependencies": {
+        "fun-bots": "^1.0.0"
+    }
+}
