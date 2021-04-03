@@ -4,15 +4,15 @@ Changes the visual appearance of the bots to look like civilians. This is useful
 
 ## Screenshot
 
-![Random Bot 1](Random Bot 1.jpg)
-![Random Bot 2](Random Bot 2.jpg)
-![Random Bot 3](Random Bot 3.jpg)
-![Random Bot 4](Random Bot 4.jpg)
-![Random Bot 5](Random Bot 5.jpg)
-![Random Bot 6](Random Bot 6.jpg)
-![Random Bot 7](Random Bot 7.jpg)
-![Random Bot 8](Random Bot 8.jpg)
-![Random Bot 9](Random Bot 9.jpg)
+![Random Bot 1](Screenshots\Random Bot 1.jpg)
+![Random Bot 2](Screenshots\Random Bot 2.jpg)
+![Random Bot 3](Screenshots\Random Bot 3.jpg)
+![Random Bot 4](Screenshots\Random Bot 4.jpg)
+![Random Bot 5](Screenshots\Random Bot 5.jpg)
+![Random Bot 6](Screenshots\Random Bot 6.jpg)
+![Random Bot 7](Screenshots\Random Bot 7.jpg)
+![Random Bot 8](Screenshots\Random Bot 8.jpg)
+![Random Bot 9](Screenshots\Random Bot 9.jpg)
 
 ## Preview Video
 
